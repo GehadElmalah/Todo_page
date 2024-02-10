@@ -14,14 +14,14 @@
                 </tr>
             </thead>
             <tbody class="  text-sm text-center ">
-                <tr v-for="(todo, index) in todoList" :key="todo.id" class="border-2">
+                <tr v-for="(todo, index) in todoList" :key="todo.id" class="border-2" :style="`${todo.isCompleted ? 'background : #71c278' : 'background : transparent'}`">
                    <td>{{ todo.text }}</td> 
                    <td>{{ todo.from }}</td>
                    <td>{{ todo.to }}</td>
                    <td>{{ new Date(todo.createdAt).toLocaleDateString() }}</td>
                    <td>
                     <div>
-                        <button class=" m-2 p-2 bg-green-900 text-white rounded-md">Completed</button>
+                        <button class=" m-2 p-2 bg-green-900 text-white rounded-md" @click="completed(todo)">Completed</button>
                         <button class=" m-2 p-2 bg-red-900 text-white rounded-md" @click="deleteTodo(index)">Delete</button>
                     </div>
                    </td>
@@ -52,6 +52,11 @@ const deleteTodo = (index) =>{
 const addToLocalSt = () =>{
     localStorage.setItem("todos", JSON.stringify(todoList.value));
 };
+
+const completed = (todo) =>{
+    todo.isCompleted = ! todo.isCompleted ;
+    addToLocalSt();
+}
 
 // Hooks
 onMounted(() =>{

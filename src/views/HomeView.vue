@@ -40,6 +40,7 @@ const todoObject = ref({
     from : "",
     to : "",
     createdAt : "",
+    isCompleted : false,
 }); 
 
 //Methods
@@ -58,6 +59,7 @@ const addTodo = () =>{
         from : "",
         to : "",
         createdAt : "",
+        isCompleted : false,
     };
 };
 
