@@ -3,7 +3,7 @@
         <h1 class=" font-extrabold text-center text-3xl text-red-900">Todos</h1>
     </div>
     <div class=" p-16">
-        <table class=" border-2 w-full ">
+        <table class=" border-2 w-full " v-if="todoList.length">
             <thead class=" border-2 text-xl font-bold text-center">
                 <tr>
                     <td>Task</td>
@@ -21,13 +21,16 @@
                    <td>{{ new Date(todo.createdAt).toLocaleDateString() }}</td>
                    <td>
                     <div>
-                        <button class=" m-2 p-2 bg-green-900 text-white rounded-md" @click="completed(todo)">Completed</button>
+                        <button class=" m-2 p-2 bg-green-900 text-white rounded-md" @click="completed(todo)">{{todo.isCompleted ? 'completed' : 'Incompleted'}}</button>
                         <button class=" m-2 p-2 bg-red-900 text-white rounded-md" @click="deleteTodo(index)">Delete</button>
                     </div>
                    </td>
                 </tr>
             </tbody>
         </table>
+        <h2
+        class=" text-center text-3xl font-semibold" 
+        v-else>No Todos to show</h2>
     </div>
 </template>
 
